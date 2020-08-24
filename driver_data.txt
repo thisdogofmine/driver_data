@@ -1,0 +1,23 @@
+Driver Dan_ok
+Driver Lauren_ok
+Driver Kumi_ok
+Driver Stella_ok
+Driver Snoopy_too_slow
+Driver Ajax_bad_hour
+Driver Benji_bad_minute
+Driver Abby_too_fast
+
+Trip Dan_ok 07:15 07:45 17.3
+Trip Dan_ok 06:12 06:32 21.8
+Trip Lauren_ok 12:01 13:16 42.1
+Trip Stella_ok 06:12 012:32 502.8
+Trip Scott_bad_driver 08:22 09:44 21.8
+Trip Snoopy_too_slow 17:15 07:45 17.3
+Trip Herbie_ok 12:01 13:16 42.1
+Trip Ajax_bad_hour 20:22 25:44 400.0
+Trip Benji_bad_minute 22:99 23:30 65
+Trip Abby_too_fast 12:00 13:00 300
+Trip Stella_ok 06:00 7:00 60
+Trip Stella_ok 06:00 8:00 120
+Trip Stella_ok 06:00 7:00 70
+Driver Herbie_ok

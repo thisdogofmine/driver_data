@@ -147,8 +147,35 @@ So:
 			the start time will always be before the end time
 			ignore if average a speed less than 5 mph or greater than 100 mph.
 			
+average speed?
+	so do we calculate speed per trip then average the speeds together 
+	or
+	add up all the miles and then divide by trip count?
 	
+option 1:
+	// trip speeds are inde
+	Trip Dan 07:15 07:45 17.3
+	30min .5 hour
+	17.3/.5 = 34.6 -- trip speed
 	
+	Trip Dan 06:12 06:32 21.8
+	20min .33 hour
+	21.8/.33 = 66.06 -- trip speed
 	
+	34.6 + 66.06 = 100.66 / 2(trips) = ave speed = 50.33 -0 round to 50mph
+	
+option 2:
+	
+	50 min .83 hour (total time)
+	39.1 miles (total miles)
+	39.1/.83 = 47.11 round to 47mph
+	
+example shows:
+	Dan: 39 miles @ 47 mph
+
+conclusion:
+	I will follow what the example shows, but I don't know if this is right
+	In a production environment I would question this with the user to verify we are using the correct calculation
+	as this is a coding challenge(not a math challenge), I will just follow the example in the instructions
 	
 /end

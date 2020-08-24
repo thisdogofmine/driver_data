@@ -7,10 +7,9 @@ class driver_trip {
 	private $miles_driven;
 	
 	private $trip_time; // calculated from stop - start -- in hours (minutes/60)
-	private $speed; // calculated speed in miles per hour
+	private $speed; //calculated speed in miles per hour 
 	
 	public $valid_drivers = array(); //public so driver can be added during file parse
-	
 	
 	public function __construct(){
 		
@@ -36,19 +35,26 @@ class driver_trip {
 		$this->miles_driven = $miles;
 	}
 	
-	private function calculateTripTime(){
-		//private since this is only called from calculate speed
-			//no real need to be private, but also no need to be public
-			//limit access when access is not needed
-		
+	public function calculateTripTime(){
 		//need to make times calculatable
 			//convert to minutes
 			//this is minutes past midnight - can't drive past midnight
 			
 		$start_parts = explode(':', $this->start_time);
-		$start_minutes = $start_parts[0]*60 + $start_parts[1];
-		
 		$stop_parts = explode(':', $this->stop_time);
+		
+		//validate times are valid
+		//valid hours (1-23)
+		//valid minutes (0-59)
+		
+		if($start_parts[0] > 23
+		|| $start_parts[1] > 59
+		|| $stop_parts[0] > 23
+		|| $stop_parts[1] > 59){
+			return FALSE;
+		}
+		
+		$start_minutes = $start_parts[0]*60 + $start_parts[1];
 		$stop_minutes = $stop_parts[0]*60 + $stop_parts[1];
 		
 		// validate start is less than stop
@@ -66,44 +72,57 @@ class driver_trip {
 	
 	
 	public function calculateSpeed(){
+		//need this to ensure speed is greater than 5mph
 		
-		if(!$this->calculateTripTime()){
-			return FALSE;
-		}
 		//speed = distance/time - (miles/hour)
 			//$this->miles_driven is provided in miles
 			//$this->trip_time was calculated to hours
-		$this->speed = $this->miles_driven/$this->trip_time;
+		
+		$miles = floatval($this->miles_driven);
+		$time = floatval($this->trip_time);
+		
+		if($time > 0){
+			$this->speed = $miles/$time;
+		}else{
+			$this->speed = 0;
+		}
 		
 		return TRUE;
 	}
 	
-	public function populateOutput($output){
-		//there are many ways to do this; use global =keyword, call by reference...
-			//but why? this is simpler and easier to follow
+	public function populateOutput(){
+		//there are many ways to do this; but why? this is simpler and easier to follow
+		global $output;
 		
 		// output is
-		//total miles driven (sum) 
-		//average speed (ave)
+			//total miles driven (sum) 
+			//average speed (ave)
 		
-		//see if driver name is already in array
-		if(empty($output[$this->driver]) ){
-			//if not create
-			$output[$this->driver]['name'] = $this->driver;
-			$output[$this->driver]['miles'] = $this->miles_driven;
-			$output[$this->driver]['speed'] = $this->speed;
-			$output[$this->driver]['trip_count'] = 1;
-		}else{
-			//else add values to existing array
-			$output[$this->driver]['miles'] = $output[$this->driver]['miles'] + $this->miles_driven;
-			//will average speed after processing all rows
-			$output[$this->driver]['speed'] = $output[$this->driver]['speed'] + $this->speed;
-			$output[$this->driver]['trip_count']++;
+		//Discard any trips that average a speed of less than 5 mph 
+			//or greater than 100 mph.
+		if($this->speed < 5.0 || $this->speed > 100.00){
+			return FALSE;
 		}
 		
-		return $output;
+		//see if driver name is already in array
+		if(empty($output[$this->driver]['name']) ){
+			//if not create
+			$output[$this->driver]['name'] = $this->driver;
+			$output[$this->driver]['miles'] = floatval($this->miles_driven);
+			$output[$this->driver]['time'] = floatval($this->trip_time);
+			$output[$this->driver]['trip_count'] = 1;
+			$output[$this->driver]['speed'] = 0.0;
+		}else{
+			//else add values to existing array
+			$output[$this->driver]['name'] = $this->driver;
+			$output[$this->driver]['miles'] = floatval($output[$this->driver]['miles'] + floatval($this->miles_driven));
+			$output[$this->driver]['time'] = floatval($output[$this->driver]['time'] + floatval($this->trip_time));
+			$output[$this->driver]['trip_count']++;
+			//will average speed after processing all rows
+			$output[$this->driver]['speed'] = 0.0;
+		}
+		return TRUE;
 	}
-	
 
 }
 ?>
