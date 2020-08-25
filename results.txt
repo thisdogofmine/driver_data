@@ -1,7 +1,7 @@
 Stella_ok: 753 miles @ 73 mph 
-Dan_ok: 39 miles @ 47 mph 
 Lauren_ok: 42 miles @ 34 mph 
 Herbie_ok: 42 miles @ 34 mph 
+Dan_ok: 39 miles @ 47 mph 
 Kumi_ok: 0 miles @ 0 mph 
 Snoopy_too_slow: 0 miles @ 0 mph 
 Ajax_bad_hour: 0 miles @ 0 mph 

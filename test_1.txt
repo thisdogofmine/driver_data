@@ -1,0 +1,24 @@
+Driver Dan
+Driver Lauren
+Driver Kumi
+Driver Stella
+Driver Snoopy
+Driver Ajax
+Driver Benji
+Driver Abby
+
+Trip Dan 07:15 07:45 17.3
+Trip Dan 06:12 06:32 21.8
+Trip Laurenk 12:01 13:16 42.1
+Trip Stella 06:12 012:32 502.8
+Trip Scott 08:22 09:44 21.8
+Trip Snoopy 17:15 07:45 17.3
+Trip Herbie 12:01 13:16 42.1
+Trip Ajax 20:22 25:44 400.0
+Trip Benji 22:99 23:30 65
+Trip Abby 12:00 13:00 300
+Trip Stella 06:00 7:00 60
+Trip Stella 06:00 8:00 120
+Trip Stella 06:00 7:00 70
+Driver Herbie
+Driver Scott

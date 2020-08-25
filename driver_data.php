@@ -13,8 +13,12 @@ $output = array();
 //$output['<driver_name>'] = array('driver', 'miles', 'speed');
 $valid_drivers = array();
 
+if(!empty($argv[1])){
+	$file = $argv[1];
+}else{
+	$file = 'driver_data.txt';
+}
 
-$file = 'driver_data.txt';
 $contents = file($file);
 
 foreach($contents as $row){
@@ -90,7 +94,7 @@ function build_sorter($key) {
 }
 
 //Sort the output by most miles driven to least.
-usort($output, build_sorter('speed'));
+usort($output, build_sorter('miles'));
 
 //echo var_dump($valid_drivers);
 
